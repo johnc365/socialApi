@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
+import routes from './routes';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3001;
@@ -10,11 +11,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/socialApiDB')
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
-mongoose.connection.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+app.use('/api', routes);
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('API is running');
 });
 
