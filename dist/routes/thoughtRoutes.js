@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const thoughtController_1 = require("../controllers/thoughtController");
+const router = (0, express_1.Router)();
+router.get('/', thoughtController_1.getAllThoughts);
+router.get('/:thoughtId', thoughtController_1.getThoughtById);
+router.post('/', thoughtController_1.createThought);
+router.put('/:thoughtId', thoughtController_1.updateThought);
+router.delete('/:thoughtId', thoughtController_1.deleteThought);
+router.post('/:thoughtId/reactions', thoughtController_1.addReaction);
+router.delete('/:thoughtId/reactions/:reactionId', thoughtController_1.removeReaction);
+exports.default = router;
